@@ -5,9 +5,13 @@ export default class BoardCoordinates {
     }
 
     static valid(coords) {
-        return coords.x <= 7 &&
-            coords.y <= 7 &&
-            coords.x >= 0 &&
-            coords.y >= 0;
+        const { x, y } = coords;
+
+        return Number.isInteger(x) &&
+            Number.isInteger(y) &&
+            x <= 7 &&
+            y <= 7 &&
+            x >= 0 &&
+            y >= 0;
     }
 }
