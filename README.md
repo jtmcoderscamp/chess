@@ -18,8 +18,8 @@
    - _**chore/**_ for branches created with the purpose of improving code organization, configuring something or otherwise perform supporting takss that aren't focused on development of new features or fixing existing ones
 
 ## FOLDER STRUCTURE:
-* _**docs/**_ - this folder contains the **index.html** file and webpack-generated contents that shouldn't be manually edited or commited to the repository
-  * _**src/**_ - the folder containing source files of the application, including **index.js** file that serves as the main script of the application (scripts contained within are the ones that are going to be executed within docs/index.html file)
+* _**docs/**_ - this folder contains the _**index.html**_ file and webpack-generated contents that shouldn't be manually edited or commited to the repository
+  * _**src/**_ - the folder containing source files of the application, including _**index.js**_ file that serves as the main script of the application (scripts contained within are the ones that are going to be executed within docs/index.html file)
   * _**src/game/**_ - this folder contains source files for the logic of the application
     * _**src/game/board/**_ - this folder contains source files related to state of the board (piece positions on the board along with history)
     * _**src/game/moveFinding/**_ - this folder contains source files related to calculating of available moves
