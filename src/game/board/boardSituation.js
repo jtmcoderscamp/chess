@@ -1,11 +1,12 @@
 export default class BoardSituation {
    
     constructor(curr=null, prev=null) {
-                //curr i prev pojawią się tylko w momencie jeżeli ktoś zapisał grę i chce do niej wrócić?
+                // czy curr i prev pojawią się tylko w momencie jeżeli ktoś zapisał grę i chce do niej wrócić?
+        this.situation=[];
         for (let i=0; i<8; i++)
         {
             this.situation[i]=[];
-            this.situation[i][7]=null.fill(null);
+            this.situation[i][7]=null;
             this.situation[i].fill(null);  
         }
         this.previousSituation=[...this.situation]
@@ -57,6 +58,7 @@ export default class BoardSituation {
         this.situation[7][4]=new ChessPiece("King","black");
         this.situation[7][5]=new ChessPiece("Bishop","black");
         this.situation[7][6]=new ChessPiece("Knight","black");
+        this.situation[7][7]=new ChessPiece("Rook","black");
 
         this.situation[0][0]=new ChessPiece("Rook","white");
         this.situation[0][1]=new ChessPiece("Knight","white");
@@ -69,8 +71,8 @@ export default class BoardSituation {
         
        for (let i =0; i<8;i++)
        {
-        this.situation[1][i]=new ChessPiece("Rook","white");
-        this.situation[6][i]=new ChessPiece("Rook","black");
+        this.situation[1][i]=new ChessPiece("Pawn","white");
+        this.situation[6][i]=new ChessPiece("Pawn","black");
        }
     }
 
