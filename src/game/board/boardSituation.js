@@ -18,7 +18,7 @@ export default class BoardSituation {
 
     validateBoard(board) {
         if (board === null) { return true; }
-        if (!board.isArray()) { return false; }
+        if (!board instanceof Array) { return false; }
         if (!board.length == 8) { return false; }
 
         for (let i = 0; i < 8; i++) {
