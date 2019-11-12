@@ -1,8 +1,25 @@
+import BoardPosition from "./boardPosition";
+
 export default class BoardSituation {
 
-    constructor(curr = null, prev = null) {
-        // czy curr i prev pojawią się tylko w momencie jeżeli ktoś zapisał grę i chce do niej wrócić?
+    constructor() {
+        if(firstPosition instanceof BoardPosition)
+        
+    }
 
+    get position() {
+        // TODO: this function should return current position on the board as an 8x8 array of ChessPiece objects
+        return [];
+    }
+
+    get previousSituation() {
+        // TODO: this function should return previous situation or null if there's none (in case of the first position)
+        return new BoardSituation();
+    }
+    
+    constructor(firstPosition) {
+       
+        
         if (this.validateBoard(prev) === false || this.validateBoard(curr) === false) {
             throw new Error("Unable to create board situation, given data is incorrect");
         }
@@ -70,31 +87,10 @@ export default class BoardSituation {
         }
     }
 
-    setNewSituation(piece, newBoardCoordinates, prevBoardCoordinates)//(piece, newBoardCoordinates)
-    {
-        if ((piece instanceof ChessPiece) && (newBoardCoordinates instanceof BoardCoordinates) && (prevBoardCoordinates instanceof BoardCoordinates)) {
-            this.previousSituation = [...this.situation];
-            //opcja bez prevBoardCoordinates: jeżeli pion nie ma informacji o  swojej pozycji  i nie została ona dostarczona jako zmienna
-            //to musze go wyszukać w tablicy
-            //czyli jego nazwa i kolor muszą być unikatowe  (np pionek musi mieć nr)
-            this.situation[prevBoardCoordinates.x][prevBoardCoordinates.y] = null;
-            this.situation[boardCoordinates.x][boardCoordinates.y] = piece;
-        }
-        else window.alert('Incorrect data given');
-    }
+    
 
-    undoMove() {
-        this.situation = [...this.previousSituation];
-    }
+   
 
-    createEmptyBoard() {
-        let board = [];
-        for (let i = 0; i < 8; i++) {
-            board[i] = [];
-            board[i][7] = null;
-            board[i].fill(null);
-        }
-        return board;
-    }
+    
 
 }
