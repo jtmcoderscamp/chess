@@ -1,7 +1,7 @@
 class ChessPiece {
 
     static get PIECE_TYPES() {
-        return ["pawn", "king", "queen", "tower", "bishop", "rook"];
+        return ["pawn", "king", "queen", "tower", "bishop", "rook", "knight"];
     }
     
     static get PIECE_COLORS() {
