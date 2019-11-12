@@ -1,24 +1,24 @@
 class ChessPiece {
 
-    static getFigureTypes() {
+    static get PIECE_TYPES() {
         return ["pawn", "king", "queen", "tower", "bishop", "rook"];
     }
     
-    static getColors() {
+    static get PIECE_COLORS() {
         return ["white", "black"];
     }
 
     constructor(pieceType, color) {
-        const avalaibleFigures = ChessPiece.getFigureTypes();
-        const avalaibleColors = ChessPiece.getColors();
+        const avalaiblePieceTypes = ChessPiece.PIECE_TYPES;
+        const avalaibleColors = ChessPiece.PIECE_COLORS;
         if (avalaibleColors.indexOf(color) === -1) {
             throw new Error(
-              "Color bad!!! Could not create figure with color " + color,
+              "Invalid color. Could not create chess piece with color " + color,
             );
         }
-        if (avalaibleFigures.indexOf(pieceType) === -1) {
+        if (avalaiblePieceTypes.indexOf(pieceType) === -1) {
             throw new Error(
-              "Figure type bad!!! Could not create figure of type " + pieceType,
+              "Invalid piece type. Could not create chess piece of type " + pieceType,
             );
         }
         this.pieceType = pieceType;
@@ -27,5 +27,6 @@ class ChessPiece {
 }
 
 export default ChessPiece;
+
 
   
