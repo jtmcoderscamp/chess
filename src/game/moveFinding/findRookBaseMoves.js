@@ -1,75 +1,63 @@
 import BoardCoordinates from "../board/boardCoordinates";
 
-export default function findRookBaseMoves(boardSituation, startingCoordinates, color) {
-    const b = [...checkMovesVertical(boardSituation, startingCoordinates, color), 
-            ...checkMovesHorizontal(boardSituation, startingCoordinates, color)]; //makes one array of possible moves
-    return b;   //returns this array
+export default function findRookBaseMoves(boardSituation, startingCoordinates, color) {        
+        let currentBoard = boardSituation.position;
+        return checkMoves(currentBoard, startingCoordinates, color);
 }
 
-
-function checkMovesHorizontal (boardSituation, startingCoordinates, pieceColor){
-    let x = startingCoordinates.x-1; //x position currently being checked
-    let movesHorizontal=[]; //array of possible moves
-    while(x>=0)  //check current row from piece position to left edge, stop upon finding another piece
+function checkMoves(currentBoard, startingCoordinates, color)
+{
+    let possibleMoves = []; //array with all possible moves
+    //variables used in while loop 
+    let x = startingCoordinates.x+1;
+    let move = true;
+    while(move) //as long as you can move right and push coordinates to array
     {
-        let posValue = boardSituation[startingCoordinates.y][x];
-        if(posValue == null)
-            movesHorizontal.push(new BoardCoordinates(x,startingCoordinates.y));
-        else
-        {   //if you can capture piece, it is a possible move
-            if(posValue.color!=pieceColor)
-                movesHorizontal.push(new BoardCoordinates(x,startingCoordinates.y));
-            break;
-        }
-        x--;     
-    }
-    x=startingCoordinates.x+1;
-    while(x<8) //check current row from piece position to right edge, stop upon finding another piece
-    {
-        let posValue = boardSituation[startingCoordinates.y][x];
-        if( posValue == null)
-            movesHorizontal.push(new BoardCoordinates(x,startingCoordinates.y));
-        else
-        {
-            if(posValue.color!=pieceColor)
-                movesHorizontal.push(new BoardCoordinates(x,startingCoordinates.y));
-            break;
-        }
+        move=makeStep(currentBoard, x, startingCoordinates.y, color, possibleMoves);
         x++;
     }
-    return movesHorizontal;
-}
 
-function checkMovesVertical(boardSituation, startingCoordinates, pieceColor){
-    let y=startingCoordinates.y-1;
-    let movesVertical=[]; 
-    
-    while(y>=0) //check current column from piece position to bottom edge, stop upon finding another piece
+    x = startingCoordinates.x-1;
+    move = true;
+    while(move)//as long as you can move left and push coordinates to array
     {
-        let posValue = boardSituation[y][startingCoordinates.x];
-        if(posValue == null)
-            movesVertical.push(new BoardCoordinates(startingCoordinates.x, y));
-        else
-        {  
-            if(posValue.color != pieceColor)
-                movesVertical.push(new BoardCoordinates(startingCoordinates.x, y));
-            break;
-        }    
-        y--;
+        move=makeStep(currentBoard,x,startingCoordinates.y, color, possibleMoves);
+        x--;
     }
-    y=startingCoordinates.y+1;
-    while(y<8)  //check current column from piece position to top edge, stop upon finding another piece
+
+    let y = startingCoordinates.y+1;
+    move = true;
+    while(move)
     {
-        let posValue = boardSituation[y][startingCoordinates.x];
-        if(posValue == null)
-            movesVertical.push(new BoardCoordinates (startingCoordinates.x, y));
-        else
-        {   
-            if(posValue.color != pieceColor)
-                movesVertical.push(new BoardCoordinates (startingCoordinates.x, y));
-            break;
-        }
+        move=makeStep(currentBoard, startingCoordinates.x, y, color, possibleMoves);
         y++;
     }
-    return movesVertical;
+
+    y = startingCoordinates.y-1;
+    move = true;
+    while(move)
+    {
+        move=makeStep(currentBoard, startingCoordinates.x, y, color, possibleMoves);
+        y--;
+    }
+
+    return possibleMoves;
+}
+
+
+function makeStep(currentBoard, x,y, color, aggregator){
+    if(x<0 || x>7 || y<0 || y>7)
+        return false;
+    if (currentBoard[y][x]==null)
+    {
+        aggregator.push(new BoardCoordinates(x,y));
+        return true;
+    }
+    else
+    {
+        if(currentBoard[y][x].color!=color)
+            aggregator.push(new BoardCoordinates(x,y));
+        return false;
+    }
+    
 }
