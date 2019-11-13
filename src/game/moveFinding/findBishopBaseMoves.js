@@ -27,7 +27,7 @@ function checkMoves(currentBoard, startingCoordinates, color) {
         else {
             //check if you can capture this piece, if you can it is a legal move
             if (currentBoard[x][y].color != color) {
-                aggregator.push(new BoardCoordinates(x, y));
+                posibleMoves.push(new BoardCoordinates(x, y));
             }
             break;
         }
@@ -48,7 +48,7 @@ function checkMoves(currentBoard, startingCoordinates, color) {
         else {
             //check if you can capture this piece, if you can it is a legal move
             if (currentBoard[x][y].color != color) {
-                aggregator.push(new BoardCoordinates(x, y));
+                posibleMoves.push(new BoardCoordinates(x, y));
             }
             break;
         }
@@ -66,7 +66,7 @@ function checkMoves(currentBoard, startingCoordinates, color) {
         } else {
             //check if you can capture this piece, if you can it is a legal move
             if (currentBoard[x][y].color != color) {
-                aggregator.push(new BoardCoordinates(x, y));
+                posibleMoves.push(new BoardCoordinates(x, y));
             }
             break;
         }
@@ -84,7 +84,7 @@ function checkMoves(currentBoard, startingCoordinates, color) {
         } else {
             //check if you can capture this piece, if you can it is a legal move
             if (currentBoard[x][y].color != color) {
-                aggregator.push(new BoardCoordinates(x, y));
+                posibleMoves.push(new BoardCoordinates(x, y));
             }
             break;
         }
