@@ -8,12 +8,6 @@ export default class ChessBoardInterface {
     var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h"];    
     var cells = [];
 
-    //highlight requested fields
-    function addActive() {
-      //console.log("add class active");
-      //div.classList.add("active");
-    }
-
     for (var i = 0; i < alphabet.length; i++) {
             var divRow = document.createElement('div');
                 divRow.classList.add("row");
@@ -21,9 +15,6 @@ export default class ChessBoardInterface {
                         var div = document.createElement('div');
                         div.setAttribute("data-x", alphabet[i]);
                         div.setAttribute("data-y", j);
-                        cells.push([alphabet[i], j]);
-                        console.log(cells);
-                        div.addEventListener("click", addActive());
                 
                     if (i % 2 == j % 2) {
                       div.classList.add("white");
@@ -31,6 +22,13 @@ export default class ChessBoardInterface {
                       div.classList.add("black");
                     }
                     divRow.append(div);
+                    cells.push(div);
+                    console.log(cells);
+                      cells.forEach(function (div) {
+                          div.addEventListener("click", function (event) {
+                              div.classList.toggle("active");
+                          });
+                      });
 
                   }
                   this.parentNode.append(divRow);
