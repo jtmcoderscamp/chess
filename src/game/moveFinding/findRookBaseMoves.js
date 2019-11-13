@@ -1,7 +1,7 @@
 import BoardCoordinates from "../board/boardCoordinates";
 
 export default function findRookBaseMoves(boardSituation, startingCoordinates, color) {        
-        let currentBoard = boardSituation.position;
+        const currentBoard = boardSituation.position;
         return checkMoves(currentBoard, startingCoordinates, color);
 }
 
@@ -9,48 +9,51 @@ function checkMoves(currentBoard, startingCoordinates, color)
 {
     let possibleMoves = []; //array with all possible moves
     //call recursive function which checks possible moves in directions:left,right,up,down
-    makeStep(currentBoard, startingCoordinates.x, startingCoordinates.y, color, possibleMoves, "left");
-    makeStep(currentBoard, startingCoordinates.x, startingCoordinates.y, color, possibleMoves, "right");
-    makeStep(currentBoard, startingCoordinates.x, startingCoordinates.y, color, possibleMoves, "up");
-    makeStep(currentBoard, startingCoordinates.x, startingCoordinates.y, color, possibleMoves, "down");
+    makeStep(currentBoard, startingCoordinates, color, possibleMoves, "left");
+    makeStep(currentBoard, startingCoordinates, color, possibleMoves, "right");
+    makeStep(currentBoard, startingCoordinates, color, possibleMoves, "up");
+    makeStep(currentBoard, startingCoordinates, color, possibleMoves, "down");
     //return array with all possible moves
     return possibleMoves;
 }
 
 
-function makeStep(currentBoard, x, y, color, aggregator, direction){
+function makeStep(currentBoard, currentCoordinates, color, aggregator, direction){
+    //making a new variable to fix some references problems 
+    let curr = new BoardCoordinates(currentCoordinates.x, currentCoordinates.y);
     //depending on direction increment or decrement proper variable
     switch(direction)
     {
         case "up":
-            y++;
+            curr.y++;
             break;
         case "down":
-            y--;
+            curr.y--;
             break;
         case "left":
-            x--;
+            curr.x--;
             break;
         case "right":
-            x++;
+            curr.x++;
             break;
     }
     //check if you are still on chessboard
-    if(x<0 || x>7 || y<0 || y>7)
-        return false;
-    //check for empty place on board
-    if (currentBoard[y][x]==null)
+    if(BoardCoordinates.valid(curr))
     {
-        aggregator.push(new BoardCoordinates(x,y));
-        //you haven't found another chess piece - you can move further
-        return makeStep(currentBoard, x, y, color, aggregator, direction);
+        //check for empty place on board
+        if (currentBoard[curr.x][curr.y]==null)
+        {
+            //place is empty - it is a legal move
+            aggregator.push(curr);
+            //you haven't found another chess piece - you can move further
+            makeStep(currentBoard, curr, color, aggregator, direction);
+        }
+        else
+        {
+            //check if you can capture this piece, if you can it is a legal move
+            if(currentBoard[curr.x][curr.y].color!=color)
+                aggregator.push(curr);
+            //you cant move further because you've found another chess piece
+        }
     }
-    else
-    {
-        //check if you can capture this piece, if you can it is a legal move
-        if(currentBoard[y][x].color!=color)
-            aggregator.push(new BoardCoordinates(x,y));
-        return false;
-    }
-    
 }
