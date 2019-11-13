@@ -15,6 +15,15 @@ export default class ChessBoardInterface {
                         var div = document.createElement('div');
                         div.setAttribute("data-x", alphabet[i]);
                         div.setAttribute("data-y", j);
+                        cells.push(div);
+                        //console.log(cells);
+                          cells.forEach(function (div) {
+                              div.addEventListener("click", function (event) {
+                                  div.classList.toggle("active");
+                                  console.log(div.getAttribute("data-x"));
+                                  console.log(div.getAttribute("data-y"));
+                              });
+                          });
                 
                     if (i % 2 == j % 2) {
                       div.classList.add("white");
@@ -23,7 +32,7 @@ export default class ChessBoardInterface {
                     }
                     divRow.append(div);
                     cells.push(div);
-                    console.log(cells);
+                    //console.log(cells);
                       cells.forEach(function (div) {
                           div.addEventListener("click", function (event) {
                               div.classList.toggle("active");
