@@ -1,31 +1,33 @@
+import BoardPosition from "./boardPosition";
+
 export default class BoardSituation {
-        constructor(firstBoardPosition) {
-            if(newBoardPosition instanceof  BoardPosition){
-                this.boardPosition=firstBoardPosition;
-                this.boardSituation=[];
-            }
-            else {
-                 window.alert('Incorrect data given');
-            }
-        }
-        get position() {
-            // TODO: this function should return current position on the board as an 8x8 array of ChessPiece objects
-            return boardPosition;
-        }
-        get previousSituation() {
-            // TODO: this function should return previous situation or null if there's none (in case of the first position)
-            return boardSituation;
-        }
+    
+    _previousSituation;
+    _actualPosition;
+
+    constructor(actualPosition = null, previousSituation = null) {
+
+        if (previousSituation !== null && ! newBoardSituation instanceof  BoardSituation){
+            throw new Error('Argument supplied as previousSituation has incorrect data type, expected null or BoardSituation');
+        }
+
+        if (actualPosition !== null && ! actualPosition instanceof  BoardPosition){
+            throw new Error('Argument supplied as boardPosition has incorrect data type, expected null or BoardPosition');
+        }
        
-        setNewBoardSituation(newBoardPosition)
-        {
-            if(newBoardPosition instanceof  BoardPosition){
-            this.boardSituation.unshift(this.boardPosition);
-            this.boardPosition=newBoardPosition;
-            }
-            else {
-                window.alert('Incorrect data given');
-            }
-        }
+        this._previousSituation = previousSituation; 
+        if( actualPosition===null){
+        this._actualPosition = new BoardPosition().startPosition();
+        }
+     }
+
+    get situation() {
+            // TODO: this function should return current position on the board as an 8x8 array of ChessPiece objects
+            return this._actualPosition;
     }
+    get previousSituation() {
+            // TODO: this function should return previous situation or null if there's none (in case of the first position)
+            return this._previousSituation;
+    }
+ }
     
