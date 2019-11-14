@@ -1,7 +1,7 @@
 import BoardCoordinates from "../board/boardCoordinates";
 
 //definition of pawn moves
-var pawnBaseMoves = [[1, 0], [2, 0]];
+var pawnBaseMoves = [[0, 1], [0, 2]];
 
 //definition of board size and moves out of the board - if value=false => move out of board
 var outOfBoard = function(a, b) {
