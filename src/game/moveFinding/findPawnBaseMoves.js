@@ -14,8 +14,9 @@ function movesFindingX(boardSituation, startingCoordinates, color) {
     var moveY = startingCoordinates.y;
     var move //change of position
     var nextPossibleMoves = [];
-        for (){
-
+        for (move){
+            var newMoveX = moveX + move;
+            var newMoveY = moveY + move;
         }
         return nextPossibleMoves;
 }
