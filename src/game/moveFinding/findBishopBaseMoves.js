@@ -10,6 +10,7 @@ export default function findBishopBaseMoves(boardSituation, startingCoordinates,
 function checkMoves(currentBoard, startingCoordinates, color) {
 
     let posibleMoves = []; //Array with all possible moves
+    let current = new BoardCoordinates(startingCoordinates.x, startingCoordinates.y);
 
     //Change code to similar like rook piece 
 
@@ -19,7 +20,7 @@ function checkMoves(currentBoard, startingCoordinates, color) {
     let y = startingCoordinates.y;
     x++;
     y++;
-    while (x > 0 && x <= 8 && y > 0 && y <= 8) {
+    while (BoardCoordinates.valid(current)) {
         if (currentBoard[x][y] == null) {
             posibleMoves.push(new BoardCoordinates(x, y));
         }
@@ -36,11 +37,11 @@ function checkMoves(currentBoard, startingCoordinates, color) {
     }
 
     // back to value x and y from position coordinates
-    let x = startingCoordinates.x;
-    let y = startingCoordinates.y;
+    x = startingCoordinates.x;
+    y = startingCoordinates.y;
     x++;
     y--;
-    while (x > 0 && x <= 8 && y > 0 && y <= 8) {
+    while (BoardCoordinates.valid(current)) {
         if (currentBoard[x][y] == null) {
             posibleMoves.push(new BoardCoordinates(x, y));
 
@@ -56,11 +57,11 @@ function checkMoves(currentBoard, startingCoordinates, color) {
         y--;
     }
 
-    let x = startingCoordinates.x;
-    let y = startingCoordinates.y;
+    x = startingCoordinates.x;
+    y = startingCoordinates.y;
     x--;
     y--;
-    while (x > 0 && x <= 8 && y > 0 && y <= 8) {
+    while (BoardCoordinates.valid(current)) {
         if (currentBoard[x][y] == null) {
             posibleMoves.push(new BoardCoordinates(x, y));
         } else {
@@ -74,11 +75,11 @@ function checkMoves(currentBoard, startingCoordinates, color) {
         y--;
     }
 
-    let x = startingCoordinates.x;
-    let y = startingCoordinates.y;
+    x = startingCoordinates.x;
+    y = startingCoordinates.y;
     x--;
     y++;
-    while (x > 0 && x <= 8 && y > 0 && y <= 8) {
+    while (BoardCoordinates.valid(current)) {
         if (currentBoard[x][y] == null) {
             posibleMoves.push(new BoardCoordinates(x, y));
         } else {
@@ -92,5 +93,5 @@ function checkMoves(currentBoard, startingCoordinates, color) {
         y++;
     }
 
-    if (posibleMoves.length) return posibleMoves;
+    return posibleMoves;
 }
