@@ -16,81 +16,80 @@ function checkMoves(currentBoard, startingCoordinates, color) {
 
     //4 loop while for check every diagonal 
     // on the next revision try to do with one function
-    let x = startingCoordinates.x;
-    let y = startingCoordinates.y;
-    x++;
-    y++;
+    current.x++;
+    current.y++;
     while (BoardCoordinates.valid(current)) {
-        if (currentBoard[x][y] == null) {
-            posibleMoves.push(new BoardCoordinates(x, y));
+        if (currentBoard[current.x][current.y] == null) {
+            posibleMoves.push(current);
         }
 
         else {
             //check if you can capture this piece, if you can it is a legal move
-            if (currentBoard[x][y].color != color) {
-                posibleMoves.push(new BoardCoordinates(x, y));
+            if (currentBoard[current.x][current.y].color != color) {
+                posibleMoves.push(current);
             }
             break;
         }
-        x++;
-        y++;
+        current.x++;
+        current.y++;
     }
 
     // back to value x and y from position coordinates
-    x = startingCoordinates.x;
-    y = startingCoordinates.y;
-    x++;
-    y--;
+    current.x = startingCoordinates.x;
+    current.y = startingCoordinates.y;
+    current.x++;
+    current.y--;
+
     while (BoardCoordinates.valid(current)) {
-        if (currentBoard[x][y] == null) {
-            posibleMoves.push(new BoardCoordinates(x, y));
+        if (currentBoard[current.x][current.y] == null) {
+            posibleMoves.push(current);
 
         }
         else {
             //check if you can capture this piece, if you can it is a legal move
-            if (currentBoard[x][y].color != color) {
-                posibleMoves.push(new BoardCoordinates(x, y));
+            if (currentBoard[currrent.x][current.y].color != color) {
+                posibleMoves.push(current);
             }
             break;
         }
-        x++;
-        y--;
+        current.x++;
+        current.y--;
     }
 
-    x = startingCoordinates.x;
-    y = startingCoordinates.y;
-    x--;
-    y--;
+    current.x = startingCoordinates.x;
+    current.y = startingCoordinates.y;
+    current.x--;
+    current.y--;
     while (BoardCoordinates.valid(current)) {
-        if (currentBoard[x][y] == null) {
-            posibleMoves.push(new BoardCoordinates(x, y));
+        if (currentBoard[current.x][current.y] == null) {
+            posibleMoves.push(current);
         } else {
             //check if you can capture this piece, if you can it is a legal move
-            if (currentBoard[x][y].color != color) {
-                posibleMoves.push(new BoardCoordinates(x, y));
+            if (currentBoard[current.x][current.y].color != color) {
+                posibleMoves.push(current);
             }
             break;
         }
-        x--;
-        y--;
+        current.x--;
+        current.y--;
     }
 
-    x = startingCoordinates.x;
-    y = startingCoordinates.y;
-    x--;
-    y++;
+    current.x = startingCoordinates.x;
+    current.y = startingCoordinates.y;
+    current.x--;
+    current.y++;
     while (BoardCoordinates.valid(current)) {
-        if (currentBoard[x][y] == null) {
-            posibleMoves.push(new BoardCoordinates(x, y));
+        if (currentBoard[current.x][current.y] == null) {
+            posibleMoves.push(current);
         } else {
             //check if you can capture this piece, if you can it is a legal move
-            if (currentBoard[x][y].color != color) {
-                posibleMoves.push(new BoardCoordinates(x, y));
+            if (currentBoard[current.x][currenty].color != color) {
+                posibleMoves.push(current);
             }
             break;
         }
-        x--;
-        y++;
+        current.x--;
+        current.y++;
     }
 
     return posibleMoves;
