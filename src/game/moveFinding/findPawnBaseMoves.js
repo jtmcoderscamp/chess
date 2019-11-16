@@ -1,28 +1,35 @@
 import BoardCoordinates from "../board/boardCoordinates";
 
+export default function findPawnBaseMoves(boardSituation, startingCoordinates, color) {
+    let actualBoard = boardSituation.position;
+    return findMoves(currentBoard, startingCoordinates, color);
+}
+
 //definition of pawn moves
-var pawnBaseMoves = [[0, 1], [0, 2]];
 
-//definition of board size and moves out of the board - if value=false => move out of board
-var outOfBoard = function(a, b) {
-    return( a<0 || a>= 8 || b<0 || b>=8 );
-}
 
-//definition of finding possible moves for pawn
-function movesFindingX(boardSituation, startingCoordinates, color) {
-    var moveX = startingCoordinates.x;
-    var moveY = startingCoordinates.y;
-    var move //change of position
-    var nextPossibleMoves = [];
-        for (move){
-            var newMoveX = moveX + move;
-            var newMoveY = moveY + move;
-        }
-        return nextPossibleMoves;
+function findMoves(actualBoard, startingCoordinates, color) {
+    let possibleMoves = []; //Output array
+    let actual = new BoardCoordinates(startingCoordinates.x, startingCoordinates.y);
+    let deltax = [0, 1];
+    let deltay = [1, 2];
+    //checking move 2 fields forward
+    if ((startingCoordinates.y=2 || startingCoordinates.y=7) && (startingCoordinates.y + 1 == null)) && (startingCoordinates.y + 2 == null) {
+        startingCoordinates.x + deltax[0];
+        startingCoordinates.y + deltay[1];
+        possibleMoves.push(actual);
+    }
+    //checking move 1 field forward
+    else if (startingCoordinates.y + 1 == null) {
+        startingCoordinates.x + deltax[0];
+        startingCoordinates.y + deltay[0];
+        possibleMoves.push(actual);
+    }
+    else if () {
+
+    }
+    else {
+
+    }
+    return possibleMoves;
 }
-/*
-export default function findQueenBaseMoves(boardSituation, startingCoordinates, color) {
-    //TODO: implement this properly once the dependencies are completed.
-    return [...findBishopBaseMoves(), ...findRookBaseMoves()];
-} 
-*/
