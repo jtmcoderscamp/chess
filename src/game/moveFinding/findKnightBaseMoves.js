@@ -1,24 +1,22 @@
 import BoardCoordinates from "../board/boardCoordinates";
 class Knight {
     
-    outOfBounds(i, j) {
-        return ( i < 0 || i >= 8 || j < 0 || j >= 8 );
-    }
+
 
     findMovesx(boardSituation, startingCoordinates, pieceColor){
         const knightMoves = [
             [-1, -2], [-2, -1], [1, -2], [-2, 1],
             [2, -1], [-1, 2], [2, 1], [1, 2]
         ];
-        var moveX = startingCoordinates.x;
-        var moveY = startingCoordinates.y;
-        var nextMoves = [];
-            for(var move of knightMoves) {
-                var newMoveX = moveX + move[0];
-                var newMoveY = movey + move[1];
-                if( !outOfBounds(newMoveX, newMoveY)) {
-                            let possiblePosition = boardSituation[newMovex][newMovey];
-                            if(possiblePosition == null || possiblePosition.color != pieceColor){
+        const moveX = startingCoordinates.x;
+        const moveY = startingCoordinates.y;
+        let nextMoves = [];
+            for(let move of knightMoves) {
+                let newMoveX = moveX + move[0];
+                let newMoveY = movey + move[1];
+                if( !BoardCoordinates.valid(newMoveX, newMoveY)) {
+                            let nextMove = boardSituation.position[newMovex][newMovey];
+                            if(nextMove == null || boardSituation.color != pieceColor){
                                 nextMoves.push([newMoveX, newMoveX]);
                     }
                     }
