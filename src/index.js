@@ -12,7 +12,7 @@ console.log("...");
 
 let moveFinder = new MoveFinder();
 
-moveFinder.registerAlgorithm("pawn",findRookBaseMoves);
-moveFinder.registerAlgorithm("rook",findRookBaseMoves);
+moveFinder.registerAlgorithm("pawn", findRookBaseMoves);
+moveFinder.registerAlgorithm("rook", findRookBaseMoves);
 
 const game = new Game(document.querySelector('#root'), MockBoardInterface, moveFinder, true);
