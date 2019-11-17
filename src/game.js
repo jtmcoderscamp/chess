@@ -11,7 +11,7 @@ export default class Game {
         this._currentSituation = new BoardSituation();
         this._onMove = whiteOnMove ? "white" : "black";
 
-        this._display = new DisplayConstructor(parentNode,this.clickField.bind(this));
+        this._display = new DisplayConstructor(parentNode, this.clickField.bind(this));
         this._display.setPosition(this._currentSituation.position);
 
         this._selectedField = null;
@@ -22,12 +22,10 @@ export default class Game {
         if (this._selectedField) {
             if (BoardCoordinates.areEqual(this._selectedField, coords)) {
                 this.deselectField();
-            }
-            else {
+            } else {
                 this.tryMove(this._selectedField, coords);
             }
-        }
-        else {
+        } else {
             this.selectField(coords);
         }
     }
@@ -47,17 +45,17 @@ export default class Game {
         return this._moveFinder.findMoves(piece.pieceType, situation, coords, piece.color);
     }
 
-    selectField(coords){
+    selectField(coords) {
         if (this.sideOnMove(coords)) {
             const availableMoves = this.findPieceMoves(coords);
-            if (availableMoves.length > 0){
+            if (availableMoves.length > 0) {
                 this._selectedField = new BoardCoordinates(coords.x, coords.y);
                 this._display.highlightFields(availableMoves);
             }
         }
     }
 
-    deselectField(){
+    deselectField() {
         this._selectedField = null;
         this._display.clearHighlights();
     }
