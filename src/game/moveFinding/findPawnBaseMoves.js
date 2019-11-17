@@ -40,18 +40,18 @@ function findMoves(actualBoard, startingCoordinates, color) {
     }
 
     //checking beating diagonal left
-    const diagonalLeft = new BoardCoordinates(startingCoordinates.x - forwardDirection, startingCoordinates.y + forwardDirection);
-    if (diagonalLeft !== null) {
-        possibleMoves.push(diagonalLeft);
+    const diagonalLeftTargetCoords = new BoardCoordinates(startingCoordinates.x - forwardDirection, startingCoordinates.y + forwardDirection);
+    if (diagonalLeftTargetCoords !== null && actualBoard[diagonalLeftTargetCoords].color !== color) {
+        possibleMoves.push(diagonalLeftTargetCoords);
     }
     else {
         console.log('illegal move');
     }
 
     //checking beating diagonal right
-    const diagonalRight = new BoardCoordinates(startingCoordinates.x + forwardDirection, startingCoordinates.y + forwardDirection);
-    if (diagonalRight !== null) {
-        possibleMoves.push(diagonalRight);
+    const diagonalRightTargetCoords = new BoardCoordinates(startingCoordinates.x + forwardDirection, startingCoordinates.y + forwardDirection);
+    if (diagonalRightTargetCoords !== null && actualBoard[diagonalRightTargetCoords].color !== color) {
+        possibleMoves.push(diagonalRightTargetCoords;
     }
     else {
         console.log('illegal move');
