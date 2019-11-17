@@ -14,4 +14,8 @@ export default class BoardCoordinates {
             x >= 0 &&
             y >= 0;
     }
+
+    static areEqual(coords1, coords2){
+        return coords1.x === coords2.x && coords1.y === coords2.y;
+    }
 }
