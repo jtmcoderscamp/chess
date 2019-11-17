@@ -1,3 +1,5 @@
+import ChessPiece from "./chessPiece";
+
 export default class BoardPosition {
         constructor() {
             this.position = this.createEmptyBoard();
@@ -13,7 +15,7 @@ export default class BoardPosition {
             return board;
         }
 
-        startPosition() { 
+        startPosition() {
             this.position[0][7] = new ChessPiece("rook", "black");
             this.position[1][7] = new ChessPiece("knight", "black");
             this.position[2][7] = new ChessPiece("bishop", "black");
@@ -34,6 +36,7 @@ export default class BoardPosition {
                 this.position[i][1]= new ChessPiece("pawn", "white");
                 this.position[i][6] = new ChessPiece("pawn", "black");
             }
+            return this;
         }
 
         moviePiece(piece, newBoardCoordinates, prevBoardCoordinates)
