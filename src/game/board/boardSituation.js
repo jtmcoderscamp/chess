@@ -2,8 +2,8 @@ import BoardPosition from "./boardPosition";
 
 export default class BoardSituation {
     
-    _previousSituation;
-    _actualPosition;
+    /*_previousSituation;
+    _actualPosition;*/
 
     constructor(actualPosition = null, previousSituation = null) {
 
