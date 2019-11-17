@@ -70,6 +70,7 @@ export default class Game {
             const nextPosition = this.normalMove(startCoords, targetCoords);
             this._currentSituation = this._currentSituation.moveToNextPosition(nextPosition);
             this._display.setPosition(nextPosition);
+            this.toggleSide();
             this.deselectField();
         }
     }
@@ -80,5 +81,9 @@ export default class Game {
         nextPosition[targetCoords.x][targetCoords.y] = oldPosition[startCoords.x][startCoords.y];
         nextPosition[startCoords.x][startCoords.y] = null;
         return nextPosition;
+    }
+
+    toggleSide(){
+        this._onMove = this._onMove==="black" ? "white" : "black";
     }
 }
