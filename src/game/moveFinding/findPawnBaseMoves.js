@@ -23,20 +23,20 @@ function findMoves(actualBoard, startingCoordinates, color) {
     
     if (actualBoard[oneForwardTargetCoords.x][oneForwardTargetCoords.y] == null) {
         possibleMoves.push(oneForwardTargetCoords);
-    }
-        if (pawnInStartingPosition(startingCoordinates, color) === true && actualBoard[oneForwardTargetCoords.x][oneForwardTargetCoords.y] == null && actualBoard[twoForwardTargetCoords.x][twoForwardTargetCoords.y] == null ) {
+            if (pawnInStartingPosition(startingCoordinates, color) === true && actualBoard[oneForwardTargetCoords.x][oneForwardTargetCoords.y] == null && actualBoard[twoForwardTargetCoords.x][twoForwardTargetCoords.y] == null ) {
             possibleMoves.push(twoForwardTargetCoords);
+            }
     }   
 
     //checking beating diagonal left
     const diagonalLeftTargetCoords = new BoardCoordinates(startingCoordinates.x - 1, startingCoordinates.y + forwardDirection); //in case of y coordinate the use of forwardDirection is still necessary, right?
-    if (actualBoard[diagonalLeftTargetCoords.x][diagonalLeftTargetCoords.y] == null && actualBoard[diagonalLeftTargetCoords.x][diagonalLeftTargetCoords.y].color !== color) {
+    if (actualBoard[diagonalLeftTargetCoords.x][diagonalLeftTargetCoords.y] && actualBoard[diagonalLeftTargetCoords.x][diagonalLeftTargetCoords.y].color !== color) {
         possibleMoves.push(diagonalLeftTargetCoords);
     }
 
     //checking beating diagonal right
-    const diagonalRightTargetCoords = new BoardCoordinates(startingCoordinates.x + forwardDirection, startingCoordinates.y + forwardDirection);
-    if (actualBoard[diagonalRightTargetCoords.x][diagonalRightTargetCoords.y] == null && actualBoard[diagonalRightTargetCoords.x][diagonalRightTargetCoords.y].color !== color) {
+    const diagonalRightTargetCoords = new BoardCoordinates(startingCoordinates.x + 1, startingCoordinates.y + forwardDirection);
+    if (actualBoard[diagonalRightTargetCoords.x][diagonalRightTargetCoords.y] && actualBoard[diagonalRightTargetCoords.x][diagonalRightTargetCoords.y].color !== color) {
         possibleMoves.push(diagonalRightTargetCoords);
     }
     
