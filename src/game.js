@@ -3,6 +3,7 @@ import BoardSituation from "./game/board/boardSituation";
 import ChessPiece from "./game/board/chessPiece";
 import MoveFinder from "./game/moveFinding/moveFinder";
 import MockBoardInterface from "./interface/mockBoardInterface";
+import BoardPosition from "./game/board/boardPosition";
 
 export default class Game {
     constructor(parentNode, DisplayConstructor = MockBoardInterface, moveFinder = new MoveFinder(), whiteOnMove = true) {
@@ -15,7 +16,7 @@ export default class Game {
         this._display.setPosition(this._currentSituation.position);
 
         this._selectedField = null;
-        this._selectedPiece = null;
+        this._selectedPieceMoves = null;
     }
 
     clickField(coords) {
@@ -50,6 +51,7 @@ export default class Game {
             const availableMoves = this.findPieceMoves(coords);
             if (availableMoves.length > 0) {
                 this._selectedField = new BoardCoordinates(coords.x, coords.y);
+                this._selectedPieceMoves = availableMoves;
                 this._display.highlightFields(availableMoves);
             }
         }
@@ -57,10 +59,31 @@ export default class Game {
 
     deselectField() {
         this._selectedField = null;
+        this._selectedPieceMoves = null;
         this._display.clearHighlights();
     }
 
-    tryMove() {
+    tryMove(startCoords, targetCoords) {
+        const isEqualToTarget = (coords) => {return BoardCoordinates.areEqual(coords, targetCoords)}
+        const legalMove = this._selectedPieceMoves.findIndex(isEqualToTarget) != -1;
+        if( legalMove ) {
+            const nextPosition = this.normalMove(startCoords, targetCoords);
+            this._currentSituation = this._currentSituation.moveToNextPosition(nextPosition);
+            this._display.setPosition(nextPosition);
+            this.toggleSide();
+            this.deselectField();
+        }
+    }
 
+    normalMove(startCoords, targetCoords) {
+        const oldPosition = this._currentSituation.position
+        const nextPosition = BoardPosition.clonePositionArray(oldPosition);
+        nextPosition[targetCoords.x][targetCoords.y] = oldPosition[startCoords.x][startCoords.y];
+        nextPosition[startCoords.x][startCoords.y] = null;
+        return nextPosition;
+    }
+
+    toggleSide(){
+        this._onMove = this._onMove==="black" ? "white" : "black";
     }
 }

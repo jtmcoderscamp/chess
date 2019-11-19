@@ -7,17 +7,18 @@ export default class BoardSituation {
 
     constructor(actualPosition = null, previousSituation = null) {
 
-        if (previousSituation !== null && ! newBoardSituation instanceof  BoardSituation){
+        if (previousSituation !== null && ! previousSituation instanceof  BoardSituation){
             throw new Error('Argument supplied as previousSituation has incorrect data type, expected null or BoardSituation');
         }
 
-        if (actualPosition !== null && ! actualPosition instanceof  BoardPosition){
-            throw new Error('Argument supplied as boardPosition has incorrect data type, expected null or BoardPosition');
+        if (actualPosition !== null /*&& ! actualPosition instanceof  BoardPosition*/){
+            this._actualPosition = new BoardPosition(actualPosition);
+            //throw new Error('Argument supplied as boardPosition has incorrect data type, expected null or BoardPosition');
         }
        
         this._previousSituation = previousSituation; 
         if( actualPosition===null){
-        this._actualPosition = new BoardPosition().startPosition();
+            this._actualPosition = new BoardPosition().startPosition();
         }
      }
 
@@ -28,6 +29,12 @@ export default class BoardSituation {
     get previousSituation() {
             // TODO: this function should return previous situation or null if there's none (in case of the first position)
             return this._previousSituation;
+    }
+
+    moveToNextPosition(positionArray){
+        if( !positionArray ) { throw new Error("Position to move to required"); }
+        const nextSituation = new BoardSituation(positionArray,this);
+        return nextSituation;
     }
  }
     
