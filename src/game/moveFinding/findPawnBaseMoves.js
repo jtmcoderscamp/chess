@@ -2,7 +2,7 @@ import BoardCoordinates from "../board/boardCoordinates";
 
 export default function findPawnBaseMoves(boardSituation, startingCoordinates, color) {
     let actualBoard = boardSituation.position;
-    return findMoves(currentBoard, startingCoordinates, color);
+    return findMoves(actualBoard, startingCoordinates, color);
 }
 //function which cheks if it's the first move of pawn in the game
 
